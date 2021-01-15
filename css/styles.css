@@ -20,6 +20,8 @@ body {
   --heading-color: #212121;
   --main-text-color: #757575;
   --accent-color: #2196f3;
+  --duration: 250ms;
+  --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Сбрасывает отступы */
@@ -92,8 +94,6 @@ header {
 .header-container {
   display: flex;
   align-items: center;
-  padding-top: 24px;
-  padding-bottom: 25px;
 }
 
 .nav-conteiner {
@@ -101,6 +101,10 @@ header {
 }
 
 /* логотип */
+.nav-conteiner .logo {
+  display: block;
+  padding: 25px 0px;
+}
 
 .logo {
   margin-top: 0px;
@@ -120,16 +124,46 @@ header {
 /*Навигация */
 
 .nav {
+  position: relative;
+  display: block;
+  padding: 32px 0px;
+
   color: var(--heading-color);
-  font-size: 14px;
+
   line-height: 1.14;
   letter-spacing: 0.02em;
+  transition-duration: var(--duration);
+  transition-timing-function: var(--timing-function);
+}
+
+.nav::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+
+  width: 100%;
+  height: 4px;
+  background: #2196f3;
+  border-radius: 2px;
+  opacity: 0;
+  transition-duration: var(--duration);
+  transition-timing-function: var(--timing-function);
 }
 
 .nav:hover,
 .nav:focus,
 .current {
   color: var(--accent-color);
+}
+
+.current::after {
+  opacity: 1;
+}
+
+.nav:hover::after,
+.nav:focus::after {
+  opacity: 1;
 }
 
 .link-list {
@@ -172,9 +206,13 @@ header {
 .address:hover,
 .address:focus {
   color: var(--accent-color);
+  transition-duration: var(--duration);
+  transition-timing-function: var(--timing-function);
 }
 
 .address {
+  display: block;
+  padding: 32px 0px;
   letter-spacing: 0.02em;
   color: var(--main-text-color);
 }
@@ -184,6 +222,7 @@ header {
 /* Герой */
 
 .hero-box {
+  position: relative;
   overflow: hidden;
   background-image: linear-gradient(
       to right,
@@ -196,15 +235,21 @@ header {
   background-position: center;
   background-size: cover;
 
+  display: block;
+  max-width: 1600px;
+  height: 600px;
+}
+
+.hero-position {
+  position: absolute;
+  display: block;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
   color: var(--main-color);
   text-align: center;
   letter-spacing: 0.06em;
-
-  /* Позиционирование */
-
-  display: block;
-  padding-top: 200px;
-  padding-bottom: 210px;
 }
 
 .hero {
@@ -212,7 +257,7 @@ header {
   font-size: 44px;
   line-height: 1.36;
   text-transform: uppercase;
-  margin-bottom: 30px;
+  padding-bottom: 30px;
 }
 
 .hero-box .button {
@@ -226,7 +271,6 @@ header {
   /* Стили кнопки */
 
   display: inline-block;
-  position: inherit;
   width: 200px;
   height: 50px;
   border-radius: 4px;
@@ -258,10 +302,38 @@ header {
   padding-bottom: 94px;
   background-color: var(--main-color);
 }
+.service-link {
+  position: relative;
+  display: block;
+  width: 370px;
+  height: 300px;
+  padding: 0;
+  margin: 0;
+}
+
+.service-modal {
+  position: absolute;
+  display: block;
+  left: 0px;
+  bottom: 0px;
+
+  width: 100%;
+  height: 70px;
+  margin: 0;
+
+  background: rgba(47, 48, 58, 0.8);
+  font-weight: bold;
+
+  line-height: 1.14;
+  text-align: center;
+
+  text-transform: uppercase;
+  padding: 27px 0px;
+  color: #ffffff;
+}
 /* О компании */
 
 .advantage-title {
-  font-size: 14px;
   font-weight: 700;
   line-height: 1.14;
   text-transform: uppercase;
@@ -367,6 +439,7 @@ header {
   width: 45px;
   height: 45px;
   fill: #afb1b8;
+  transition-property: background-color;
 }
 
 .social-link:hover,
@@ -374,6 +447,8 @@ header {
   background-color: var(--accent-color);
   border-radius: 50%;
   fill: var(--main-color);
+  transition-duration: var(--duration);
+  transition-timing-function: var(--timing-function);
 }
 
 .link-icon {
@@ -420,6 +495,8 @@ header {
   border-radius: 4px;
   fill: var(--accent-color);
   border-color: var(--accent-color);
+  transition-duration: var(--duration);
+  transition-timing-function: var(--timing-function);
 }
 
 /* Подвал */
@@ -471,13 +548,12 @@ header {
 }
 
 .footer-social > h2 {
-  font-family: Roboto;
   font-style: normal;
   font-weight: bold;
   font-size: 14px;
-  line-height: 16px;
-  letter-spacing: 0.03em;
+  line-height: 1.14;
   text-transform: uppercase;
+  text-align: left;
   padding-bottom: 20px;
   color: #ffffff;
 }
@@ -491,6 +567,8 @@ header {
 .footer-social .social-link:hover,
 .footer-social .social-link:focus-visible {
   background: var(--accent-color);
+  transition-duration: var(--duration);
+  transition-timing-function: var(--timing-function);
 }
 
 /* Страница 2 - Portfolio.html */
@@ -538,6 +616,8 @@ header {
   color: var(--main-color);
   box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.08),
     0px 2px 2px rgba(0, 0, 0, 0.12);
+  transition-duration: var(--duration);
+  transition-timing-function: var(--timing-function);
 }
 
 /* Портфолио проектов_Общий класс-product */
@@ -549,18 +629,47 @@ header {
 }
 
 .product {
+  position: relative;
   display: inline-block;
   background: var(--main-color);
   border: 1px solid #eeeeee;
   box-sizing: border-box;
   width: 370px;
   height: 404px;
+  transition-duration: var(--duration);
+  transition-timing-function: var(--timing-function);
 }
 
 .product:hover,
 .product:focus {
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
     1px 4px 6px rgba(0, 0, 0, 0.16);
+}
+
+.product-overley {
+  position: absolute;
+
+  top: 294px;
+  left: 0;
+  width: 100%;
+  height: 294px;
+  background: rgba(33, 150, 243, 0.9);
+  padding: 63px 24px;
+  font-size: 18px;
+  line-height: 1.56;
+
+  color: #ffffff;
+
+  opacity: 0;
+
+  transition-duration: var(--duration);
+  transition-timing-function: var(--timing-function);
+}
+
+.product:hover .product-overley,
+.product:focus .product-overley {
+  opacity: 1;
+  transform: translateY(-100%);
 }
 
 .portfolio-product:not(:nth-child(3n)) {
